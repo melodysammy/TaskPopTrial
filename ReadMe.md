@@ -1,0 +1,19 @@
+# TaskPop Trial
+
+### Framework compairson
+* Compare your two applications. Which framework did you find easier to work with? Why?<br/>
+When implementing the React version of TaskPop, a lot of the code had to be broken up into smaller pieces. Each section of TaskPop became a component, and the components were put together at the higher level. This is fine, except that some of the information from one component had to be passed to the other. While it is more difficult to pass information from one part of the application to another, it is not impossible using states. React states are really nice because anytime the contents of one changes, that part (and only that part) of the webpage will update. This made the red dates and list swapping really easy since it would always update what was on the screen.
+<br/>
+TLDR: Passing information from component to component was more difficult, getting certain aspects of the page to update was easy due to the dynamic rendering built into React.
+<br/><br/>
+When implementing the Angular version of TaskPop, I was able to pop all the HTML and CSS aspects of the React version straight into Angular. It was really easy to rebuild the base of the website and get the two parts to work together since they were in the same file. From there, I had to find a new way to handle the list updates from the complete, discard, and shuffle buttons. Most of the code was resuable since it was using vanilla Javascript logic, but some of the page elements had to be explicitly redelcared so that it would update the webpage. Getting the dates to turn red was so much more of a hassle in Angular and required drilling down into the CSS and HTML of the website. Also, the TypeScript did more harm than good, causing me several headaches when trying to set up the task list.
+<br/><br/>
+TLDR: Getting the form information to the list up top was really easy. Getting the list to update dynamically when any of the buttons were pushed was a lot more difficult. The red date and TypeScript were espeically a headache.
+
+* How does using a framework compare to using vanilla javascript or jQuery? How does a framework help (or not help)?<br/>
+The frameworks made it much easier to display dynamic content on the page. I was able to take information from the submitted form and display it above with something as simple as a variable and some curly braces. As opposed to vanilla javascript or jQeury that requires you give all elements class and id names to find them and the innerHTML within those. Not to mention that more in-depth functions would've been necessary just to get the information to update appropriately.
+
+* For each framework, describe an interesting challenge you encountered when implementing your app? What was the issue and how did you solve it?<br/>
+When implementing the React and Angular app, I had a hard time with the red dates for many reasons. In both apps, I used the javascript new Date() object. But, this object creates a new date relative to GMT for some reason. So in order to get October 3rd to show up as October 3rd and not October 4th GMT, I had to do some Time Zone math. It was very annoying, but worked.<br/>
+In React specifically, the red date had to be updated by creating a state for the task date's style. This was done by placing a function in the render function, which I didn't know you could do. From there, it was easy to call this state below using `<h5 style={state}>`. <br/>
+In Angular specifically, the red date had to be changed by dynamically changing the class associated with the header. I had to create two style guidelines, literally color: black and color: red, and change the class based on the date comparision. It was very annoying, and a much more tedious process than React because of how many things had to have the same name and very specific syntax.
